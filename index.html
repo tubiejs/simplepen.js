@@ -1,0 +1,31 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <title>simplepen Demo</title>
+    <style type="text/css">
+        body{
+            padding:0;
+            margin:0;
+        }
+        #_canvas {
+            background-color: rgb(240,240,240);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="_canvas">sorry, your broswer does not support html5!</canvas>
+    <script src="simplepen.js"></script>
+    <script>
+        var canvas_ = document.getElementById("_canvas");
+        //full screen
+        canvas_.setAttribute("width", window.screen.width);
+        canvas_.setAttribute("height", window.screen.height);
+        //start the app
+        var myPen = new simplePen({
+            canvas: "#_canvas"
+        });
+    </script>
+</body>
+</html>
