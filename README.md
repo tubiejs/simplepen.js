@@ -1,4 +1,4 @@
-##simplepen
+##simplepen.js
 A simple canvas pen for learning purpose!
 ###Javascript:
         var myPen = new simplePen({
