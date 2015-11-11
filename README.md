@@ -6,4 +6,4 @@ A simple canvas pen for learning purpose!
         });
 -----------------------
 ###License
-simplepen is available under the terms of the .[MIT License](http://www.opensource.org/licenses/mit-license.php).
+simplepen is available under the terms of the [MIT License](http://www.opensource.org/licenses/mit-license.php).
