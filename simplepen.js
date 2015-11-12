@@ -2,6 +2,9 @@
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
         define(['simplePen'], function (simplePen) {
+            // Also create a global in case some scripts
+            // that are loaded still are looking for
+            // a global even when an AMD loader is in use.
             return (root.simplePen = factory(simplePen));
         });
     } else if (typeof exports === 'object') {
@@ -28,7 +31,7 @@
         this.version = "${version}";
         this.currentPos = { x: 0, y: 0 };
         this.isWriting = false;
-        this.line = [];// a set of points which make a line
+        this.path = [];// a set of points which make a line
         this.canvas = {};
         this.context = {};
         this.default = {
@@ -76,7 +79,7 @@
          * @private
          */
         paint: function () {
-            var posArr = this.line,
+            var posArr = this.path,
                 context = this.context;
             context.beginPath();
             context.moveTo(posArr[0].x, posArr[0].y);
@@ -103,7 +106,7 @@
             This.canvas.addEventListener('touchstart', function (event) {
                 This.isWriting = true;
                 This.currentPos = { x: event.changedTouches[0].pageX, y: event.changedTouches[0].pageY };
-                This.line.push(This.currentPos);
+                This.path.push(This.currentPos);
                 This.paint();
             }, false);
             //touch move
@@ -111,27 +114,27 @@
                 event.preventDefault();
                 if (This.isWriting) {
                     This.currentPos = { x: event.changedTouches[0].pageX, y: event.changedTouches[0].pageY };
-                    This.line.push(This.currentPos);
+                    This.path.push(This.currentPos);
                     This.paint();
                 }
             }, false);
             //touch end
             This.canvas.addEventListener('touchend', function (event) {
                 This.isWriting = false;
-                This.line = [];
+                This.path = [];
             }, false);
             //mouse down
             This.canvas.onmousedown = function (event) {
                 This.isWriting = true;
                 This.currentPos = { x: event.offsetX, y: event.offsetY };
-                This.line.push(This.currentPos);
+                This.path.push(This.currentPos);
                 This.paint();
             }
 
             //mouse up
             This.canvas.onmouseup = function (event) {
                 This.isWriting = false;
-                This.line = [];
+                This.path = [];
             }
 
 
@@ -139,7 +142,7 @@
             This.canvas.onmousemove = function (event) {
                 if (This.isWriting) {
                     This.currentPos = { x: event.offsetX, y: event.offsetY };
-                    This.line.push(This.currentPos);
+                    This.path.push(This.currentPos);
                     This.paint();
                 }
             }
