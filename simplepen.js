@@ -152,7 +152,7 @@
         * @private
         */
         setNamespace: function () {
-            root.simplePen = previousRandom;
+            root.simplePen = previousSimplePen;
             return this;
         }
 
