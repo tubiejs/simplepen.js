@@ -1,9 +1,9 @@
-##simplepen.js
+## simplepen.js
 A simple canvas pen for learning purpose!
-###Javascript:
+### Javascript:
         var myPen = new simplePen({
             canvas: "#_canvas"
         });
 -----------------------
-###License
+### License
 simplepen is available under the terms of the [MIT License](http://www.opensource.org/licenses/mit-license.php).
