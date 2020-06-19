@@ -102,7 +102,7 @@
     */
     bind: function () {
       var This = this;
-      //touch start
+      // touch start
       var offset = getDomOffset(This.canvas)
       This.canvas.addEventListener('touchstart', function (event) {
         This.isWriting = true;
@@ -110,7 +110,7 @@
         This.path.push(This.currentPos);
         This.paint();
       }, false);
-      //touch move
+      // touch move
       This.canvas.addEventListener('touchmove', function (event) {
         event.preventDefault();
         if (This.isWriting) {
@@ -119,30 +119,31 @@
           This.paint();
         }
       }, false);
-      //touch end
+      // touch end
       This.canvas.addEventListener('touchend', function (event) {
         This.isWriting = false;
         This.path = [];
       }, false);
-      //mouse down
+      // mouse down
       This.canvas.onmousedown = function (event) {
         This.isWriting = true;
-        This.currentPos = { x: event.offsetX - offset.left, y: event.offsetY - offset.top };
+        This.currentPos = { x: event.pageX - offset.left, y: event.pageY - offset.top };
         This.path.push(This.currentPos);
         This.paint();
       }
 
-      //mouse up
+      // mouse up
       This.canvas.onmouseup = function (event) {
         This.isWriting = false;
         This.path = [];
       }
 
 
-      //mouse move
+      // mouse move
       This.canvas.onmousemove = function (event) {
+        event.preventDefault();
         if (This.isWriting) {
-          This.currentPos = { x: event.offsetX - offset.left, y: event.offsetY - offset.top };
+          This.currentPos = { x: event.pageX - offset.left, y: event.pageY - offset.top };
           This.path.push(This.currentPos);
           This.paint();
         }
