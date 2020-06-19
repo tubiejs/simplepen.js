@@ -167,19 +167,11 @@
    * @return {Object} offset { left, top }
    */
   function getDomOffset (el) {
-    return getOffset(el)
-    function getOffset (e) {
-      var offset = {
-        top: e.offsetTop,
-        left: e.offsetLeft
-      }
-      if (e.offsetParent) {
-        var pOffset = getOffset(e.offsetParent)
-        offset.top += pOffset.top
-        offset.left += pOffset.left
-      }
-      return offset
-    }
+    var box = el.getBoundingClientRect();
+    return {
+      top: box.top + window.pageYOffset - document.documentElement.clientTop,
+      left: box.left + window.pageXOffset - document.documentElement.clientLeft
+    };
   }
 
   return simplePen;
